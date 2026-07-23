@@ -90,14 +90,42 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (isValid) {
-        if (formToast) {
-          formToast.classList.add('show');
-          contactForm.reset();
-          
-          setTimeout(() => {
-            formToast.classList.remove('show');
-          }, 4000);
-        }
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(contactForm);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status === 200) {
+            if (formToast) {
+              formToast.textContent = 'Your message has been sent successfully. We will get back to you shortly.';
+              formToast.classList.add('show');
+              contactForm.reset();
+              
+              setTimeout(() => {
+                formToast.classList.remove('show');
+              }, 4000);
+            }
+          } else {
+            console.error(json);
+            alert(json.message || 'Something went wrong. Please try again.');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Form submission failed. Please check your internet connection and try again.');
+        })
+        .finally(() => {
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        });
       }
     });
 

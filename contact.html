@@ -107,33 +107,36 @@
         <!-- Contact Form -->
         <div>
           <form class="contact-form" id="contact-form">
+            <input type="hidden" name="access_key" value="28f80870-92ca-41f9-9d89-36dbc57de1c1">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
             <h3 class="form-title">Send a Message</h3>
             
             <div class="form-row">
               <div class="form-group">
                 <label for="name" class="form-label">Full Name *</label>
-                <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
               </div>
               <div class="form-group">
                 <label for="org" class="form-label">Organization / Local Authority *</label>
-                <input type="text" id="org" class="form-control" placeholder="e.g. Bedford Council" required>
+                <input type="text" id="org" name="organization" class="form-control" placeholder="e.g. Bedford Council" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="email" class="form-label">Email Address *</label>
-                <input type="email" id="email" class="form-control" placeholder="example@domain.com" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="example@domain.com" required>
               </div>
               <div class="form-group">
                 <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" id="phone" class="form-control" placeholder="e.g. 07123 456789">
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 07123 456789">
               </div>
             </div>
 
             <div class="form-group">
               <label for="enquiry-type" class="form-label">Enquiry Type</label>
-              <select id="enquiry-type" class="form-control">
+              <select id="enquiry-type" name="enquiry_type" class="form-control">
                 <option value="general">General Enquiry</option>
                 <option value="placement">Placement Referral</option>
                 <option value="other">Other</option>
@@ -142,7 +145,7 @@
 
             <div class="form-group">
               <label for="message" class="form-label">Message *</label>
-              <textarea id="message" class="form-control" placeholder="Write your message here..." required></textarea>
+              <textarea id="message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: var(--radius-sm);">Send Message</button>
